@@ -3,15 +3,16 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QObject>
+#include "CConnectCenter.h"
 
-class ISerial: public QObject
+class ISerial:public QObject
 {
     Q_OBJECT
 public:
     ISerial();
     virtual ~ISerial();
 
-    void config(void);
+    virtual ConnectError_t config(void);
     void open_serial(void);
     void serial_write(QByteArray &dat);
 

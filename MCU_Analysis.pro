@@ -42,6 +42,7 @@ FORMS += \
 HEADERS += \
     CApp/CAppDriver.h \
     CApp/CAppManagement.h \
+    CApp/CConnectCenter.h \
     CWinDesign/CWAdminLogin.h \
     CWinDesign/MainWindow.h \
     IDriver/IDataStruct.h \
@@ -50,6 +51,7 @@ HEADERS += \
 
 SOURCES += \
     CApp/CAppManagement.cpp \
+    CApp/CConnectCenter.cpp \
     CWinDesign/CWAdminLogin.cpp \
     CWinDesign/MainWindow.cpp \
     IDriver/IDataStruct.cpp \
