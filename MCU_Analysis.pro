@@ -28,8 +28,10 @@ CONFIG += c++11
 
 INCLUDEPATH += ./Idriver\
                ./CApp\
-               ./CWinDesign
-
+               ./CWinDesign\
+               ./IDriver/usbhid
+LIBS += -L$$_PRO_FILE_PWD_/IDriver/usbhid/\
+        -lhidapi
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -47,7 +49,8 @@ HEADERS += \
     CWinDesign/MainWindow.h \
     IDriver/IDataStruct.h \
     IDriver/IUart.h \
-    IDriver/IUdpServer.h \
+    IDriver/IUdpServer.h \ \
+    IDriver/usbhid/hidapi.h
 
 SOURCES += \
     CApp/CAppManagement.cpp \

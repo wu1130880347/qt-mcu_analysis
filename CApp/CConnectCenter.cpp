@@ -29,7 +29,7 @@ void CConnectCenter::Agreement(Q_FramePara_t &t_frame)
     {
         qDebug() << "t_fun_code = 0x" << hex << t_fun_code << endl;
     case 0x0501:
-        protocol_shake_hands(t_frame);
+        //protocol_shake_hands(t_frame);
         break;
     default:
         break;

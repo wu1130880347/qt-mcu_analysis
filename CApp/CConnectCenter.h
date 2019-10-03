@@ -30,7 +30,7 @@ typedef struct
 class CConnectCenter : public QThread
 {
 public:
-    CConnectCenter() = default;
+    CConnectCenter(){}
     explicit CConnectCenter(CConnectCenter *t_CConCenter);
     void protocol_shake_hands(Q_FramePara_t &t_frame);    //握手协议-提供界面更新显示
     void protocol_transfer_other(Q_FramePara_t &t_frame); //转发兼容其他协议
@@ -40,7 +40,7 @@ public:
 protected:
     void run(); //多线程处理
 
-    virtual ~CConnectCenter();
+    virtual ~CConnectCenter(){}
     virtual ConnectError_t config(void);                      //配置底层驱动
     virtual ConnectError_t connect_send(QByteArray &t_QByte); //底层驱动实现
     virtual ConnectError_t connect_rece(QByteArray &t_QByte); //底层驱动实现
