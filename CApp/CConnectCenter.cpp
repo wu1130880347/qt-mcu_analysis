@@ -24,10 +24,10 @@ void CConnectCenter::run()
 
 void CConnectCenter::Agreement(Q_FramePara_t &t_frame)
 {
-    uint16_t t_fun_code = t_frame.data.at(13) | t_frame.data.at(14) << 8;
+    uint16_t t_fun_code = uint16_t(t_frame.data.at(13) | t_frame.data.at(14) << 8);
     switch (t_fun_code)
     {
-        qDebug() << "t_fun_code = 0x" << hex << t_fun_code << endl;
+        //qDebug() << "t_fun_code = 0x" << hex << t_fun_code << endl;
     case 0x0501:
         //protocol_shake_hands(t_frame);
         break;

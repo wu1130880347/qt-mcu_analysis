@@ -50,6 +50,7 @@ HEADERS += \
     IDriver/IDataStruct.h \
     IDriver/IUart.h \
     IDriver/IUdpServer.h \ \
+    IDriver/IUsbHid.h \
     IDriver/usbhid/hidapi.h
 
 SOURCES += \
@@ -60,4 +61,5 @@ SOURCES += \
     IDriver/IDataStruct.cpp \
     IDriver/IUart.cpp \
     IDriver/IUdpServer.cpp \
+    IDriver/IUsbHid.cpp \
     main.cpp
