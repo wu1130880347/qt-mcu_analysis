@@ -18,7 +18,6 @@ void CConnectCenter::run()
             mutex_rece.unlock();
             Agreement(t_frame);
         }
-        rece_sem.release();
     }
 }
 

@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 
     CWAdminLogin g_CWAdminlogin;
     g_CWAdminlogin.show();
-    g_IUsbHid->usb_test();
+    g_IUsbHid->usb_init();
+    g_IUsbHid->start();
     return a.exec();
 }
