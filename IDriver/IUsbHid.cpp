@@ -5,6 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
+<<<<<<< HEAD
+#include "CAppManagement.h"
+#include <stdint.h>
+=======
+>>>>>>> master
 
 IUsbHid *g_IUsbHid = nullptr;
 
@@ -23,6 +28,25 @@ static hid_device *handle = nullptr;
 #if defined(QT_DEBUG)
 static int Dprintf(const char *format, ...)
 {
+<<<<<<< HEAD
+    static QByteArray usb_log;
+    char buf[500];
+    int i;
+    va_list vlist;
+    va_start(vlist, format);
+    i = vsprintf(buf, format, vlist);
+    va_end(vlist);
+    //qDebug() << buf;
+    usb_log.append(buf);
+    g_Cmain_win->usb_log_process(usb_log);
+    usb_log.clear();
+    return i;
+}
+#else
+static int Dprintf(const char *format, ...)
+{
+=======
+>>>>>>> master
     char buf[500];
     int i;
     va_list vlist;
@@ -72,6 +96,72 @@ void IUsbHid::usbhid_write(QByteArray &dat)
 {
     dat.toInt();
 }
+<<<<<<< HEAD
+//滤重
+static uint8_t check_usb_dev(uint16_t (*dev)[2], uint16_t vid, uint16_t pid)
+{
+    uint8_t i = 0;
+    uint8_t ret = 0;
+    for (i = 0; i < 20; i++)
+    {
+        if (dev[i][0] == vid && dev[i][1] == pid)
+        {
+            ret = 1;
+            break;
+        }
+        if (dev[i][0] == 0)
+        {
+            ret = 2;
+            dev[i][0] = vid;
+            dev[i][1] = pid;
+            break;
+        }
+    }
+    return (ret == 2) ? 0 : 1;
+}
+#define MAX_STR 255
+bool IUsbHid::usb_open_dev(uint16_t vid,uint16_t pid)
+{
+    handle = hid_open(vid, pid, nullptr);
+    if (!handle)
+    {
+        Dprintf("unable to open 0x%04x pid: 0x%04x\n",vid,pid);
+        return false;
+    }
+    Dprintf("open device vid：0x%04x pid: 0x%04x successful\n",vid,pid);
+    return true;
+}
+bool IUsbHid::usb_get_pc_dev(void)
+{
+    struct hid_device_info *devs, *cur_dev;
+    uint16_t usb_dev[20][2] = {0};
+    if (hid_init())
+        return false;
+    devs = hid_enumerate(0x0, 0x0);
+    cur_dev = devs;
+    while (cur_dev)
+    {
+        if (check_usb_dev(usb_dev, cur_dev->vendor_id, cur_dev->product_id))
+        {
+            cur_dev = cur_dev->next;
+            continue;
+        }
+
+        Dprintf("Device Found\ntype: vid 0x%04hx pid 0x%04hx", cur_dev->vendor_id, cur_dev->product_id);
+        Dprintf("Manufacturer: %ls", cur_dev->manufacturer_string);
+        Dprintf("Product:      %ls", cur_dev->product_string);
+        Dprintf("\n");
+        cur_dev = cur_dev->next;
+    }
+
+    hid_free_enumeration(devs); //释放内存
+    cur_dev = nullptr;
+    return true;
+}
+uint16_t IUsbHid::usb_init(void)
+{
+    int res;
+=======
 uint16_t IUsbHid::usb_init(void)
 {
     int res;
@@ -79,17 +169,37 @@ uint16_t IUsbHid::usb_init(void)
 #define MAX_STR 255
     wchar_t wstr[MAX_STR];
 
+>>>>>>> master
     int i;
-
+    unsigned char buf[MAX_STR];
+    wchar_t wstr[MAX_STR];
     struct hid_device_info *devs, *cur_dev;
-
+    uint16_t usb_dev[20][2] = {0};
     if (hid_init())
         return -1;
-
     devs = hid_enumerate(0x0, 0x0);
     cur_dev = devs;
     while (cur_dev)
     {
+<<<<<<< HEAD
+        if(check_usb_dev(usb_dev,cur_dev->vendor_id,cur_dev->product_id))
+        {
+            cur_dev = cur_dev->next;
+            continue;
+        }
+
+        Dprintf("Device Found\ntype: vid 0x%04hx pid 0x%04hx",cur_dev->vendor_id, cur_dev->product_id);
+        Dprintf("Manufacturer: %ls", cur_dev->manufacturer_string);
+        Dprintf("Product:      %ls", cur_dev->product_string);
+        Dprintf("\n");
+        cur_dev = cur_dev->next;
+    }
+
+    hid_free_enumeration(devs);//释放内存
+    cur_dev = nullptr;
+
+    handle = hid_open(0x0483, 0x5750, NULL);
+=======
         Dprintf("Device Found\n  type: %04hx %04hx\n  path: %s\n  serial_number: %ls", cur_dev->vendor_id, cur_dev->product_id, cur_dev->path, cur_dev->serial_number);
         Dprintf("\n");
         Dprintf("  Manufacturer: %ls\n", cur_dev->manufacturer_string);
@@ -111,6 +221,7 @@ uint16_t IUsbHid::usb_init(void)
     // and optionally the Serial number.
     ////handle = hid_open(0x4d8, 0x3f, L"12345");
     handle = hid_open(0x483, 0x5750, NULL);
+>>>>>>> master
     if (!handle)
     {
         Dprintf("unable to open device\n");
@@ -151,6 +262,9 @@ uint16_t IUsbHid::usb_init(void)
 
     // Try to read from the device. There shoud be no
     // data here, but execution should not block.
+<<<<<<< HEAD
+    res = hid_read(handle, buf, 64);
+=======
     res = hid_read(handle, buf, 17);
 
     // Send a Feature Report to the device
@@ -187,6 +301,7 @@ uint16_t IUsbHid::usb_init(void)
     // memset(buf, 0, sizeof(buf));
 
     // Toggle LED (cmd 0x80). The first byte is the report number (0x1).
+>>>>>>> master
     buf[0] = 0x1;
     buf[1] = 0x80;
     for(uint8_t i = 0;i<64;i++)
@@ -197,6 +312,8 @@ uint16_t IUsbHid::usb_init(void)
         Dprintf("Unable to write()\n");
         Dprintf("Error: %ls\n", hid_error(handle));
     }
+<<<<<<< HEAD
+=======
 
     // Request state (cmd 0x81). The first byte is the report number (0x1).
     // buf[0] = 0x2;
@@ -209,6 +326,7 @@ uint16_t IUsbHid::usb_init(void)
     // Read requested state. hid_read() has been set to be
     // non-blocking by the call to hid_set_nonblocking() above.
     // This loop demonstrates the non-blocking nature of hid_read().
+>>>>>>> master
     res = 0;
     while (res == 0)
     {

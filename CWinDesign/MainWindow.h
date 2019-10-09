@@ -17,7 +17,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void udp_rece_process(QByteArray &dat);
-
+    void usb_log_process(QByteArray &dat);
 private slots:
     void on_pushButton_udp_start_clicked();
 
@@ -28,6 +28,10 @@ private slots:
     void on_pushButton_udp_send_clear_clicked();
 
     void on_pushButton_udp_rece_clear_clicked();
+
+    void on_pushButton_usb_getdev_clicked();
+
+    void on_pushButton_usb_open_clicked();
 
 private:
     Ui::MainWindow *ui;

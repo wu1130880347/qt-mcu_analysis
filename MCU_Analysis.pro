@@ -30,16 +30,10 @@ INCLUDEPATH += ./Idriver\
                ./CApp\
                ./CWinDesign\
                ./IDriver/usbhid
+
 LIBS += -L$$_PRO_FILE_PWD_/IDriver/usbhid/\
         -lhidapi
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 
-FORMS += \
-    CWinDesign/CWAdminLogin.ui \
-    CWinDesign/MainWindow.ui
 
 HEADERS += \
     CApp/CAppDriver.h \
@@ -49,7 +43,7 @@ HEADERS += \
     CWinDesign/MainWindow.h \
     IDriver/IDataStruct.h \
     IDriver/IUart.h \
-    IDriver/IUdpServer.h \ \
+    IDriver/IUdpServer.h \
     IDriver/IUsbHid.h \
     IDriver/usbhid/hidapi.h
 
@@ -63,3 +57,17 @@ SOURCES += \
     IDriver/IUdpServer.cpp \
     IDriver/IUsbHid.cpp \
     main.cpp
+
+
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target
+
+FORMS += \
+    CWinDesign/CWAdminLogin.ui \
+    CWinDesign/MainWindow.ui
+
+
+
+
