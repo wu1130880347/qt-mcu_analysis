@@ -22,6 +22,10 @@ void MainWindow::usb_log_process(QByteArray &dat)
 {
     ui->textBrowser_usb_log->append(dat.data());
 }
+void MainWindow::usb_usb_rece_process(QByteArray &dat)
+{
+    ui->textBrowser_usb_rece->append(dat.data());
+}
 void MainWindow::udp_rece_process(QByteArray &dat)
 {
     ui->textEdit_rece->append(dat.data());
@@ -74,10 +78,45 @@ void MainWindow::on_pushButton_usb_open_clicked()
 
     if (g_IUsbHid->usb_open_dev((uint16_t)vid,(uint16_t)pid) != true)
     {
-        QMessageBox::question(NULL, "question", "usb open fail", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        QMessageBox::question(NULL, "question", "usb open fail");
     }
-    ui->label_usb_connect->setText(QApplication::translate("MainWindow", "状态：连接成功", nullptr));
+    else
+    {
+       ui->label_usb_connect->setText(QApplication::translate("MainWindow", "状态：连接成功", nullptr));
+    }
     cout<<"on_pushButton_usb_open_clicked"<<endl;
 }
 
+void MainWindow::on_pushButton_usb_clear_clicked()
+{
+    ui->textBrowser_usb_log->clear();
+    ui->textBrowser_usb_rece->clear();
+    ui->textBrowser_usb_send->clear();
+    cout<<"on_pushButton_usb_clear_clicked"<<endl;
+}
+
+void MainWindow::on_pushButton_usb_close_clicked()
+{
+    if (g_IUsbHid->usb_close_dev()==true)
+        ui->label_usb_connect->setText(QApplication::translate("MainWindow", "状态：连接断开", nullptr));
+    else
+        QMessageBox::question(NULL, "question", "usb is close");
+    cout<<"on_pushButton_usb_close_clicked"<<endl;
+}
+
+void MainWindow::on_pushButton_usb_send_clicked()
+{
+    QByteArray usb_send_str =  ui->textBrowser_usb_send->toPlainText().toUtf8();
+    ui->textBrowser_usb_log->append(usb_send_str.data());
+    if(usb_send_str.length() == 0)
+    {
+        QMessageBox::question(NULL, "question", "please input data!!!");
+        return ;
+    }
+    if(g_IUsbHid->usbhid_write(usb_send_str) == false)
+    {
+        QMessageBox::question(NULL, "question", "usb is send fail");
+    }
+    cout<<"on_pushButton_usb_send_clicked"<<endl;
+}
 

@@ -482,7 +482,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_send">
+             <widget class="QPushButton" name="pushButton_usb_send">
               <property name="text">
                <string>发送</string>
               </property>
@@ -582,7 +582,11 @@
                </layout>
               </item>
               <item>
-               <widget class="QTextBrowser" name="textBrowser_usb_send"/>
+               <widget class="QTextBrowser" name="textBrowser_usb_send">
+                <property name="readOnly">
+                 <bool>false</bool>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>

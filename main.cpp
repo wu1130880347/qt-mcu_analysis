@@ -14,8 +14,6 @@ int main(int argc, char *argv[])
     g_ISerial->config();
     g_ISerial->open_serial();
     //g_IUsbHid->usb_init();
-    g_IUsbHid->start();
-
     CWAdminLogin g_CWAdminlogin;
     g_CWAdminlogin.show();
     return a.exec();

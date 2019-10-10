@@ -14,7 +14,7 @@ static QMutex mutex_usb;
 static QMutex mutex_send;
 static QSemaphore rece_sem;
 static hid_device *handle = nullptr;
-
+static QByteArray m_rece_usb_data;
 // Headers needed for sleeping.
 #ifdef _WIN32
 #include <windows.h>
@@ -54,19 +54,32 @@ static int Dprintf(const char *format, ...)
 
 void IUsbHid::run()
 {
+    int ret = 0;
     while (1)
     {
         rece_sem.acquire();
         if(handle != nullptr)
         {
-            hid_read(handle, m_usb_rece_dat, sizeof(m_usb_rece_dat));
-            qDebug()<<"Enter hid_read successful\n";
+            ret = hid_read(handle, m_usb_rece_dat, sizeof(m_usb_rece_dat));
+            qDebug()<<"Enter hid_read successful rece: "<<ret<<endl;
+            if(ret > 0)
+            {
+                m_rece_usb_data.clear();
+                m_rece_usb_data = QByteArray((char*)m_usb_rece_dat, ret);
+                emit sig_rece_usb_data();//发出显示输出数据信号
+            }
         }
         else
         {
             qDebug()<<"Enter hid_read fail\n";
         }
     }
+}
+
+void IUsbHid::slot_rece_usb_data()
+{
+    Dprintf("slot_rece_usb_data\n");
+    g_Cmain_win->usb_usb_rece_process(m_rece_usb_data);
 }
 void IUsbHid::handleTimeout()
 {
@@ -77,8 +90,8 @@ void IUsbHid::handleTimeout()
 IUsbHid::IUsbHid()
 {
     m_pTimer = new QTimer(this);  
-    connect(m_pTimer, SIGNAL(timeout()), this, SLOT(handleTimeout()));  
-    m_pTimer->start(1000); 
+    connect(m_pTimer, SIGNAL(timeout()), this, SLOT(handleTimeout()));
+    connect(this, SIGNAL(sig_rece_usb_data()), this, SLOT(slot_rece_usb_data()));
 }
 IUsbHid::~IUsbHid()
 {
@@ -86,9 +99,24 @@ IUsbHid::~IUsbHid()
 void IUsbHid::usbhid_read(void)
 {
 }
-void IUsbHid::usbhid_write(QByteArray &dat)
+bool IUsbHid::usbhid_write(QByteArray &dat)
 {
-    dat.toInt();
+    char buf[65] = {0};
+    if(handle == nullptr)
+        return false;
+    char *temp_buf = dat.data();
+    int len = dat.length();
+    memcpy(buf+1,temp_buf,len);
+    int res = hid_write(handle, (unsigned char*)buf, 64 + 1);
+    if (res < 0)
+    {
+        Dprintf("Unable to write()\n");
+        Dprintf("Error: %ls\n", hid_error(handle));
+        return false;
+    }
+    Dprintf("usb wirte suc %d \n",res);
+    rece_sem.release();//准备读
+    return true;
 }
 //滤重
 static uint8_t check_usb_dev(uint16_t (*dev)[2], uint16_t vid, uint16_t pid)
@@ -112,16 +140,56 @@ static uint8_t check_usb_dev(uint16_t (*dev)[2], uint16_t vid, uint16_t pid)
     }
     return (ret == 2) ? 0 : 1;
 }
+
 #define MAX_STR 255
 bool IUsbHid::usb_open_dev(uint16_t vid,uint16_t pid)
 {
+    int res = 0;
+    wchar_t wstr[MAX_STR];
+    if(handle != nullptr)
+        return false;
     handle = hid_open(vid, pid, nullptr);
     if (!handle)
     {
         Dprintf("unable to open 0x%04x pid: 0x%04x\n",vid,pid);
         return false;
     }
-    Dprintf("open device vid�?0x%04x pid: 0x%04x successful\n",vid,pid);
+    Dprintf("open device vid：0x%04x pid: 0x%04x successful\n",vid,pid);
+
+    // Read the Manufacturer String
+    wstr[0] = 0x0000;
+    res = hid_get_manufacturer_string(handle, wstr, MAX_STR);
+    if (res < 0)
+        Dprintf("Unable to read manufacturer string\n");
+    Dprintf("Manufacturer String: %ls\n", wstr);
+
+    // Read the Product String
+    wstr[0] = 0x0000;
+    res = hid_get_product_string(handle, wstr, MAX_STR);
+    if (res < 0)
+        Dprintf("Unable to read product string\n");
+    Dprintf("Product String: %ls\n", wstr);
+
+    // Read the Serial Number String
+    wstr[0] = 0x0000;
+    res = hid_get_serial_number_string(handle, wstr, MAX_STR);
+    if (res < 0)
+        Dprintf("Unable to read serial number string\n");
+    Dprintf("Serial Number String: (%d) %ls", wstr[0], wstr);
+    Dprintf("\n");
+
+    // Read Indexed String 1
+    wstr[0] = 0x0000;
+    res = hid_get_indexed_string(handle, 1, wstr, MAX_STR);
+    if (res < 0)
+        Dprintf("Unable to read indexed string 1\n");
+    Dprintf("Indexed String 1: %ls\n", wstr);
+
+    // Set the hid_read() function to be non-blocking.
+    hid_set_nonblocking(handle, 1);
+    //开启接受线程
+    g_IUsbHid->start();
+    m_pTimer->start(1000); 
     return true;
 }
 bool IUsbHid::usb_get_pc_dev(void)
@@ -146,9 +214,19 @@ bool IUsbHid::usb_get_pc_dev(void)
         Dprintf("\n");
         cur_dev = cur_dev->next;
     }
-
     hid_free_enumeration(devs); //释放内存
     cur_dev = nullptr;
+    return true;
+}
+bool IUsbHid::usb_close_dev(void)
+{
+    if(handle == nullptr)
+        return false;
+    Dprintf("usb close successful\n");
+    g_IUsbHid->quit();
+    m_pTimer->stop();
+    hid_close(handle);
+    handle = nullptr;
     return true;
 }
 uint16_t IUsbHid::usb_init(void)

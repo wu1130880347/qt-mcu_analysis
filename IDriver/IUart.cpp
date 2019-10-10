@@ -35,9 +35,9 @@ void ISerial::open_serial(void)
 {
     m_serial->open(QIODevice::ReadWrite);
     m_serial->setBaudRate(QSerialPort::Baud115200);//设置波特率为115200
-    m_serial->setDataBits(QSerialPort::Data8);//设置数据�?8
-    m_serial->setParity(QSerialPort::NoParity); //校验位�?�置�?0
-    m_serial->setFlowControl(QSerialPort::NoFlowControl);//设置为无流控�?
+    m_serial->setDataBits(QSerialPort::Data8);//设置数据
+    m_serial->setParity(QSerialPort::NoParity); //校验位
+    m_serial->setFlowControl(QSerialPort::NoFlowControl);//设置为无流控
     connect(m_serial,SIGNAL(readyRead()),this,SLOT(serial_read()));
 }
 
