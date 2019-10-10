@@ -5,11 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
-<<<<<<< HEAD
 #include "CAppManagement.h"
 #include <stdint.h>
-=======
->>>>>>> master
 
 IUsbHid *g_IUsbHid = nullptr;
 
@@ -28,7 +25,6 @@ static hid_device *handle = nullptr;
 #if defined(QT_DEBUG)
 static int Dprintf(const char *format, ...)
 {
-<<<<<<< HEAD
     static QByteArray usb_log;
     char buf[500];
     int i;
@@ -45,8 +41,6 @@ static int Dprintf(const char *format, ...)
 #else
 static int Dprintf(const char *format, ...)
 {
-=======
->>>>>>> master
     char buf[500];
     int i;
     va_list vlist;
@@ -96,7 +90,6 @@ void IUsbHid::usbhid_write(QByteArray &dat)
 {
     dat.toInt();
 }
-<<<<<<< HEAD
 //滤重
 static uint8_t check_usb_dev(uint16_t (*dev)[2], uint16_t vid, uint16_t pid)
 {
@@ -128,7 +121,7 @@ bool IUsbHid::usb_open_dev(uint16_t vid,uint16_t pid)
         Dprintf("unable to open 0x%04x pid: 0x%04x\n",vid,pid);
         return false;
     }
-    Dprintf("open device vid：0x%04x pid: 0x%04x successful\n",vid,pid);
+    Dprintf("open device vid�?0x%04x pid: 0x%04x successful\n",vid,pid);
     return true;
 }
 bool IUsbHid::usb_get_pc_dev(void)
@@ -161,15 +154,6 @@ bool IUsbHid::usb_get_pc_dev(void)
 uint16_t IUsbHid::usb_init(void)
 {
     int res;
-=======
-uint16_t IUsbHid::usb_init(void)
-{
-    int res;
-    unsigned char buf[256];
-#define MAX_STR 255
-    wchar_t wstr[MAX_STR];
-
->>>>>>> master
     int i;
     unsigned char buf[MAX_STR];
     wchar_t wstr[MAX_STR];
@@ -181,7 +165,6 @@ uint16_t IUsbHid::usb_init(void)
     cur_dev = devs;
     while (cur_dev)
     {
-<<<<<<< HEAD
         if(check_usb_dev(usb_dev,cur_dev->vendor_id,cur_dev->product_id))
         {
             cur_dev = cur_dev->next;
@@ -199,29 +182,6 @@ uint16_t IUsbHid::usb_init(void)
     cur_dev = nullptr;
 
     handle = hid_open(0x0483, 0x5750, NULL);
-=======
-        Dprintf("Device Found\n  type: %04hx %04hx\n  path: %s\n  serial_number: %ls", cur_dev->vendor_id, cur_dev->product_id, cur_dev->path, cur_dev->serial_number);
-        Dprintf("\n");
-        Dprintf("  Manufacturer: %ls\n", cur_dev->manufacturer_string);
-        Dprintf("  Product:      %ls\n", cur_dev->product_string);
-        Dprintf("  Release:      %hx\n", cur_dev->release_number);
-        Dprintf("  Interface:    %d\n", cur_dev->interface_number);
-        Dprintf("\n");
-        cur_dev = cur_dev->next;
-    }
-
-    hid_free_enumeration(devs);
-
-    // Set up the command buffer.
-    memset(buf, 0x00, sizeof(buf));
-    buf[0] = 0x01;
-    buf[1] = 0x81;
-
-    // Open the device using the VID, PID,
-    // and optionally the Serial number.
-    ////handle = hid_open(0x4d8, 0x3f, L"12345");
-    handle = hid_open(0x483, 0x5750, NULL);
->>>>>>> master
     if (!handle)
     {
         Dprintf("unable to open device\n");
@@ -262,46 +222,7 @@ uint16_t IUsbHid::usb_init(void)
 
     // Try to read from the device. There shoud be no
     // data here, but execution should not block.
-<<<<<<< HEAD
     res = hid_read(handle, buf, 64);
-=======
-    res = hid_read(handle, buf, 17);
-
-    // Send a Feature Report to the device
-    // buf[0] = 0x02;
-    // buf[1] = 0xa0;
-    // buf[2] = 0x0a;
-    // buf[3] = 0x00;
-    // buf[4] = 0x00;
-    // res = hid_send_feature_report(handle, buf, 17);
-    // if (res < 0)
-    // {
-    //     Dprintf("Unable to send a feature report.\n");
-    // }
-
-    // memset(buf, 0, sizeof(buf));
-
-    // // Read a Feature Report from the device
-    // buf[0] = 0x2;
-    // res = hid_get_feature_report(handle, buf, sizeof(buf));
-    // if (res < 0)
-    // {
-    //     Dprintf("Unable to get a feature report.\n");
-    //     Dprintf("%ls", hid_error(handle));
-    // }
-    // else
-    // {
-    //     // Print out the returned buffer.
-    //     Dprintf("Feature Report\n   ");
-    //     for (i = 0; i < res; i++)
-    //         Dprintf("%02hhx ", buf[i]);
-    //     Dprintf("\n");
-    // }
-
-    // memset(buf, 0, sizeof(buf));
-
-    // Toggle LED (cmd 0x80). The first byte is the report number (0x1).
->>>>>>> master
     buf[0] = 0x1;
     buf[1] = 0x80;
     for(uint8_t i = 0;i<64;i++)
@@ -312,21 +233,6 @@ uint16_t IUsbHid::usb_init(void)
         Dprintf("Unable to write()\n");
         Dprintf("Error: %ls\n", hid_error(handle));
     }
-<<<<<<< HEAD
-=======
-
-    // Request state (cmd 0x81). The first byte is the report number (0x1).
-    // buf[0] = 0x2;
-    // buf[1] = 0x81;
-    // buf[2] = 0xa5;
-    // hid_write(handle, buf, 17);
-    // if (res < 0)
-    //     Dprintf("Unable to write() (2)\n");
-
-    // Read requested state. hid_read() has been set to be
-    // non-blocking by the call to hid_set_nonblocking() above.
-    // This loop demonstrates the non-blocking nature of hid_read().
->>>>>>> master
     res = 0;
     while (res == 0)
     {
