@@ -40,6 +40,8 @@ HEADERS += \
     CApp/CAppManagement.h \
     CApp/CConnectCenter.h \
     CWinDesign/CWAdminLogin.h \
+    CWinDesign/CWTestTools.h \
+    CWinDesign/CWTestToolsStatus.h \
     CWinDesign/MainWindow.h \
     IDriver/IDataStruct.h \
     IDriver/IUart.h \
@@ -51,6 +53,8 @@ SOURCES += \
     CApp/CAppManagement.cpp \
     CApp/CConnectCenter.cpp \
     CWinDesign/CWAdminLogin.cpp \
+    CWinDesign/CWTestTools.cpp \
+    CWinDesign/CWTestToolsStatus.cpp \
     CWinDesign/MainWindow.cpp \
     IDriver/IDataStruct.cpp \
     IDriver/IUart.cpp \
@@ -66,6 +70,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 FORMS += \
     CWinDesign/CWAdminLogin.ui \
+    CWinDesign/CWTestTools.ui \
+    CWinDesign/CWTestToolsStatus.ui \
     CWinDesign/MainWindow.ui
 
 

@@ -16,7 +16,9 @@ public:
     ~CWAdminLogin();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_admin_login_clicked();
+
+    void on_pushButton_tools_config_clicked();
 
 private:
     Ui::CWAdminLogin *ui;
