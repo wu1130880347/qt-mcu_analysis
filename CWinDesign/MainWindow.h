@@ -19,6 +19,7 @@ public:
     void udp_rece_process(QByteArray &dat);
     void usb_log_process(QByteArray &dat);
     void usb_usb_rece_process(QByteArray &dat);
+    void usb_usb_rece_process_show_va(uint32_t *dat,uint8_t len);
 private slots:
     void on_pushButton_udp_start_clicked();
     void on_pushButton_udp_stop_clicked();

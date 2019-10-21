@@ -79,7 +79,12 @@ void IUsbHid::run()
 void IUsbHid::slot_rece_usb_data()
 {
     Dprintf("slot_rece_usb_data\n");
-    g_Cmain_win->usb_usb_rece_process(m_rece_usb_data);
+    char *temp_buf = m_rece_usb_data.data();
+    uint32_t get_dat_ch[16] = {0};
+    memcpy((uint8_t *)get_dat_ch,(uint8_t *)temp_buf,64);
+    g_Cmain_win->usb_usb_rece_process_show_va(get_dat_ch,16);
+    //qDebug()<<get_dat_ch[0];
+    //g_Cmain_win->usb_usb_rece_process(m_rece_usb_data);
 }
 void IUsbHid::handleTimeout()
 {
@@ -189,7 +194,7 @@ bool IUsbHid::usb_open_dev(uint16_t vid,uint16_t pid)
     hid_set_nonblocking(handle, 1);
     //开启接受线程
     g_IUsbHid->start();
-    m_pTimer->start(1000); 
+    m_pTimer->start(100);
     return true;
 }
 bool IUsbHid::usb_get_pc_dev(void)
