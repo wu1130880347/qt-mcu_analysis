@@ -29,7 +29,7 @@
    <iconset>
     <normaloff>../Icon/PAdminLogin.png</normaloff>../Icon/PAdminLogin.png</iconset>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -209,7 +209,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit">
+               <widget class="QLineEdit" name="lineEdit_ch_1">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -225,7 +225,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_42">
+               <widget class="QLabel" name="label_ch_1">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -246,7 +246,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_4">
+               <widget class="QLineEdit" name="lineEdit_ch_2">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -259,7 +259,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_43">
+               <widget class="QLabel" name="label_ch_2">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -280,7 +280,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_7">
+               <widget class="QLineEdit" name="lineEdit_ch_3">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -293,7 +293,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_44">
+               <widget class="QLabel" name="label_ch_3">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -314,7 +314,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_6">
+               <widget class="QLineEdit" name="lineEdit_ch_4">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -327,7 +327,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_45">
+               <widget class="QLabel" name="label_ch_4">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -348,7 +348,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_13">
+               <widget class="QLineEdit" name="lineEdit_ch_5">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -361,7 +361,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_46">
+               <widget class="QLabel" name="label_ch_5">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -382,7 +382,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_11">
+               <widget class="QLineEdit" name="lineEdit_ch_6">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -395,7 +395,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_47">
+               <widget class="QLabel" name="label_ch_6">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -416,7 +416,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_14">
+               <widget class="QLineEdit" name="lineEdit_ch_7">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -429,7 +429,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_49">
+               <widget class="QLabel" name="label_ch_7">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -450,7 +450,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_10">
+               <widget class="QLineEdit" name="lineEdit_ch_8">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -463,7 +463,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_48">
+               <widget class="QLabel" name="label_ch_8">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -484,7 +484,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_19">
+               <widget class="QLineEdit" name="lineEdit_ch_9">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -497,7 +497,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_51">
+               <widget class="QLabel" name="label_ch_9">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -518,7 +518,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_17">
+               <widget class="QLineEdit" name="lineEdit_ch_10">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -531,7 +531,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_50">
+               <widget class="QLabel" name="label_ch_10">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -602,12 +602,12 @@
               <item>
                <widget class="QLabel" name="label_18">
                 <property name="text">
-                 <string>通道 1</string>
+                 <string>通道11</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_2">
+               <widget class="QLineEdit" name="lineEdit_ch_11">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -623,7 +623,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_52">
+               <widget class="QLabel" name="label_ch_11">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -639,12 +639,12 @@
               <item>
                <widget class="QLabel" name="label_19">
                 <property name="text">
-                 <string>通道 2</string>
+                 <string>通道12</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_5">
+               <widget class="QLineEdit" name="lineEdit_ch_12">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -657,7 +657,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_53">
+               <widget class="QLabel" name="label_ch_12">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -673,12 +673,12 @@
               <item>
                <widget class="QLabel" name="label_20">
                 <property name="text">
-                 <string>通道 3</string>
+                 <string>通道13</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_8">
+               <widget class="QLineEdit" name="lineEdit_ch_13">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -691,7 +691,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_54">
+               <widget class="QLabel" name="label_ch_13">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -707,12 +707,12 @@
               <item>
                <widget class="QLabel" name="label_21">
                 <property name="text">
-                 <string>通道 4</string>
+                 <string>通道14</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_9">
+               <widget class="QLineEdit" name="lineEdit_ch_14">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -725,7 +725,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_55">
+               <widget class="QLabel" name="label_ch_14">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -741,12 +741,12 @@
               <item>
                <widget class="QLabel" name="label_22">
                 <property name="text">
-                 <string>通道 5</string>
+                 <string>通道15</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_15">
+               <widget class="QLineEdit" name="lineEdit_ch_15">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -759,7 +759,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_56">
+               <widget class="QLabel" name="label_ch_15">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -775,12 +775,12 @@
               <item>
                <widget class="QLabel" name="label_23">
                 <property name="text">
-                 <string>通道 6</string>
+                 <string>通道16</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_12">
+               <widget class="QLineEdit" name="lineEdit_ch_16">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -793,7 +793,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_57">
+               <widget class="QLabel" name="label_ch_16">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -809,12 +809,12 @@
               <item>
                <widget class="QLabel" name="label_24">
                 <property name="text">
-                 <string>通道 7</string>
+                 <string>通道17</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_16">
+               <widget class="QLineEdit" name="lineEdit_ch_17">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -827,7 +827,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_58">
+               <widget class="QLabel" name="label_ch_17">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -843,12 +843,12 @@
               <item>
                <widget class="QLabel" name="label_25">
                 <property name="text">
-                 <string>通道 8</string>
+                 <string>通道18</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_18">
+               <widget class="QLineEdit" name="lineEdit_ch_18">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -861,7 +861,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_59">
+               <widget class="QLabel" name="label_ch_18">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -877,12 +877,12 @@
               <item>
                <widget class="QLabel" name="label_26">
                 <property name="text">
-                 <string>通道 9</string>
+                 <string>通道19</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_20">
+               <widget class="QLineEdit" name="lineEdit_ch_19">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -895,7 +895,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_60">
+               <widget class="QLabel" name="label_ch_19">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -911,12 +911,12 @@
               <item>
                <widget class="QLabel" name="label_27">
                 <property name="text">
-                 <string>通道10</string>
+                 <string>通道20</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_21">
+               <widget class="QLineEdit" name="lineEdit_ch_20">
                 <property name="text">
                  <string>0.0</string>
                 </property>
@@ -929,7 +929,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_61">
+               <widget class="QLabel" name="label_ch_20">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -1045,7 +1045,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_44">
+               <widget class="QLineEdit" name="lineEdit_ch_cur_1">
                 <property name="text">
                  <string>00</string>
                 </property>
@@ -1058,7 +1058,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_68">
+               <widget class="QLabel" name="label_ch_cur_1">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -1079,7 +1079,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_42">
+               <widget class="QLineEdit" name="lineEdit_ch_cur_2">
                 <property name="text">
                  <string>00</string>
                 </property>
@@ -1092,7 +1092,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_70">
+               <widget class="QLabel" name="label_ch_cur_2">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -1113,7 +1113,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_53">
+               <widget class="QLineEdit" name="lineEdit_ch_cur_3">
                 <property name="text">
                  <string>00</string>
                 </property>
@@ -1126,7 +1126,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_72">
+               <widget class="QLabel" name="label_ch_cur_3">
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ff0000;&quot;&gt;红灯&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>

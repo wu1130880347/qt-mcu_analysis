@@ -16,7 +16,7 @@ CWAdminLogin::~CWAdminLogin()
 
 void CWAdminLogin::on_pushButton_admin_login_clicked()
 {
-    close();
+    //close();
     g_ISerial->config();
     g_ISerial->open_serial();
     if(g_Cmain_win == nullptr)
