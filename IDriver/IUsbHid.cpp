@@ -99,6 +99,31 @@ void IUsbHid::handleTimeout()
     rece_sem.release();
     return ;
 }
+void IUsbHid::handle_test_tools()
+{
+    static uint8_t once_fg = 0;
+    m_get_dev_fg = g_IUsbHid->usb_get_test_dev(TEST_USB_DEV_VID,TEST_USB_DEV_PID);
+    if(m_get_dev_fg == true && once_fg == 0)
+    {
+        once_fg = 1;
+        g_IUsbHid->usb_open_dev(TEST_USB_DEV_VID,TEST_USB_DEV_PID);
+        g_CCTest_tools->update_status(m_get_dev_fg);
+        qDebug()<<"open usb dev successful\n";
+    }
+    else if(m_get_dev_fg == false && once_fg == 1)
+    {
+        once_fg = 0;
+        g_IUsbHid->usb_close_dev();
+        g_CCTest_tools->update_status(m_get_dev_fg);
+        qDebug()<<"close usb dev successful\n";
+    }
+}
+void IUsbHid::usb_init_test_tool(void)
+{
+    m_pTimer_tools = new QTimer(this);
+    connect(m_pTimer_tools, SIGNAL(timeout()), this, SLOT(handle_test_tools()));
+    m_pTimer_tools->start(1000);
+}
 IUsbHid::IUsbHid()
 {
     m_pTimer = new QTimer(this);
@@ -107,9 +132,28 @@ IUsbHid::IUsbHid()
 }
 IUsbHid::~IUsbHid()
 {
+    delete m_pTimer;
+    delete m_pTimer_tools;
 }
 void IUsbHid::usbhid_read(void)
 {
+}
+bool IUsbHid::usbhid_write_byte(uint8_t *dat,uint8_t len)
+{
+    char buf[65] = {0};
+    if(handle == nullptr)
+        return false;
+    memcpy(buf+1,dat,len);
+    int res = hid_write(handle, (unsigned char*)buf, 64 + 1);
+    if (res < 0)
+    {
+        Dprintf("Unable to write()\n");
+        Dprintf("Error: %ls\n", hid_error(handle));
+        return false;
+    }
+    Dprintf("usb wirte suc %d \n",res);
+    rece_sem.release();//准备读
+    return true;
 }
 bool IUsbHid::usbhid_write(QByteArray &dat)
 {
@@ -241,26 +285,13 @@ bool IUsbHid::usb_close_dev(void)
     handle = nullptr;
     return true;
 }
-bool IUsbHid::usb_get_test_dev()
+bool IUsbHid::usb_get_test_dev(uint16_t vid,uint16_t pid)
 {
-    struct hid_device_info *devs, *cur_dev;
-    uint16_t usb_dev[20][2] = {0};
-    if (hid_init())
-        return false;
-    devs = hid_enumerate(0x0, 0x0);
-    cur_dev = devs;
-    while (cur_dev)
-    {
-        if (check_usb_dev(usb_dev, 0x0483, 0x5750))
-        {
-            hid_free_enumeration(devs); //释放内存
-            return true;
-        }
-        cur_dev = cur_dev->next;
-    }
-    hid_free_enumeration(devs); //释放内存
-    cur_dev = nullptr;
-    return false;
+    struct hid_device_info *devs;
+//    if (hid_init())
+//        return false;
+    devs = hid_enumerate(vid, pid);
+    return (devs != nullptr)?true:false;
 }
 uint16_t IUsbHid::usb_init(void)
 {

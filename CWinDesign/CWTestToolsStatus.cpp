@@ -50,3 +50,17 @@ void CWTestToolsStatus::show_test_value(uint32_t *dat, uint8_t len)
         mp_lineedit[i]->setPalette((i%4 == 2)?palette_yellow:palette_blue);
     }
 }
+
+void CWTestToolsStatus::show_tools_status(bool status)
+{
+    if(status == true)
+    {
+        ui->label_show_tools_status->setText(QApplication::translate("CWTestTools", \
+        "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600; color:#ffAA00;\">设备已连接</span></p></body></html>", nullptr));
+    }
+    else
+    {
+        ui->label_show_tools_status->setText(QApplication::translate("CWTestTools", \
+        "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600; color:#ff0000;\">设备不可用</span></p></body></html>", nullptr));
+    }
+}

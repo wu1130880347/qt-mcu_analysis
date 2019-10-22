@@ -2,7 +2,7 @@
 #define CWTESTTOOLS_H
 
 #include <QWidget>
-#include <QTimer> 
+#include "ui_CWTestTools.h"
 
 namespace Ui {
 class CWTestTools;
@@ -13,16 +13,25 @@ class CWTestTools : public QWidget
     Q_OBJECT
 
 public:
+    uint8_t m_show_status;//USBæ•°æ®æ˜¾ç¤ºåˆ°é¢æ¿ä¸Š 1 æ˜¾ç¤º 0ä¸æ˜¾ç¤º
+    bool m_test_connect;
+    uint32_t m_ch_std[20];//  mv/ma
+    uint32_t m_ch_tol[20];//  mv/ma
     explicit CWTestTools(QWidget *parent = nullptr);
-    uint8_t m_show_status;//USBÊı¾İÏÔÊ¾µ½Ãæ°åÉÏ 1 ÏÔÊ¾ 0²»ÏÔÊ¾
+    void update_status(bool connect_fg);
     ~CWTestTools();
 
 private slots:
     void on_pushButton__test_show_status_clicked();
 
+    void on_pushButton_get_test_para_clicked();
+
+    void on_pushButton_set_test_para_clicked();
+
 private:
     Ui::CWTestTools *ui;
-    QTimer *m_pTimer;  
+    QLineEdit *mp_lineedit_std[20];
+    QLineEdit *mp_lineedit_tol[20];
 };
 
 #endif // CWTESTTOOLS_H
