@@ -35,7 +35,7 @@
    <iconset>
     <normaloff>../Icon/PAdminLogin.png</normaloff>../Icon/PAdminLogin.png</iconset>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -103,14 +103,14 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="pushButton_get_test_para">
           <property name="text">
            <string>获取工装参数</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="pushButton_set_test_para">
           <property name="text">
            <string>配置工装参数</string>
           </property>
@@ -197,7 +197,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="lineEdit_ic1_ch1_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -210,7 +210,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_2">
+             <widget class="QLineEdit" name="lineEdit_ic1_ch1_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -234,7 +234,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_4">
+             <widget class="QLineEdit" name="lineEdit_ic1_ch2_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -247,7 +247,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_3">
+             <widget class="QLineEdit" name="lineEdit_ic1_ch2_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -271,7 +271,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_7">
+             <widget class="QLineEdit" name="lineEdit_ic1_ch3_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -284,7 +284,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_5">
+             <widget class="QLineEdit" name="lineEdit_ic1_ch3_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -308,7 +308,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_6">
+             <widget class="QLineEdit" name="lineEdit_ic1_ch4_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -321,7 +321,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_8">
+             <widget class="QLineEdit" name="lineEdit_ic1_ch4_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -345,7 +345,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_13">
+             <widget class="QLineEdit" name="lineEdit_ic2_ch1_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -358,7 +358,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_9">
+             <widget class="QLineEdit" name="lineEdit_ic2_ch1_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -382,7 +382,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_11">
+             <widget class="QLineEdit" name="lineEdit_ic2_ch2_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -395,7 +395,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_15">
+             <widget class="QLineEdit" name="lineEdit_ic2_ch2_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -419,7 +419,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_14">
+             <widget class="QLineEdit" name="lineEdit_ic2_ch3_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -432,7 +432,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_12">
+             <widget class="QLineEdit" name="lineEdit_ic2_ch3_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -456,7 +456,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_10">
+             <widget class="QLineEdit" name="lineEdit_ic2_ch4_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -469,7 +469,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_16">
+             <widget class="QLineEdit" name="lineEdit_ic2_ch4_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -493,7 +493,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_19">
+             <widget class="QLineEdit" name="lineEdit_ic3_ch1_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -506,7 +506,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_18">
+             <widget class="QLineEdit" name="lineEdit_ic3_ch1_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -530,7 +530,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_17">
+             <widget class="QLineEdit" name="lineEdit_ic3_ch2_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -543,7 +543,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_20">
+             <widget class="QLineEdit" name="lineEdit_ic3_ch2_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -624,12 +624,12 @@
             <item>
              <widget class="QLabel" name="label_19">
               <property name="text">
-               <string>通道 1</string>
+               <string>通道11</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_21">
+             <widget class="QLineEdit" name="lineEdit_ic3_ch3_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -642,7 +642,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_22">
+             <widget class="QLineEdit" name="lineEdit_ic3_ch3_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -661,12 +661,12 @@
             <item>
              <widget class="QLabel" name="label_20">
               <property name="text">
-               <string>通道 2</string>
+               <string>通道12</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_23">
+             <widget class="QLineEdit" name="lineEdit_ic3_ch4_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -679,7 +679,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_24">
+             <widget class="QLineEdit" name="lineEdit_ic3_ch4_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -698,12 +698,12 @@
             <item>
              <widget class="QLabel" name="label_21">
               <property name="text">
-               <string>通道 3</string>
+               <string>通道13</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_25">
+             <widget class="QLineEdit" name="lineEdit_ic4_ch1_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -716,7 +716,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_26">
+             <widget class="QLineEdit" name="lineEdit_ic4_ch1_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -735,12 +735,12 @@
             <item>
              <widget class="QLabel" name="label_22">
               <property name="text">
-               <string>通道 4</string>
+               <string>通道14</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_27">
+             <widget class="QLineEdit" name="lineEdit_ic4_ch2_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -753,7 +753,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_28">
+             <widget class="QLineEdit" name="lineEdit_ic4_ch2_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -772,12 +772,12 @@
             <item>
              <widget class="QLabel" name="label_23">
               <property name="text">
-               <string>通道 5</string>
+               <string>通道15</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_29">
+             <widget class="QLineEdit" name="lineEdit_ic4_ch3_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -790,7 +790,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_30">
+             <widget class="QLineEdit" name="lineEdit_ic4_ch3_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -809,12 +809,12 @@
             <item>
              <widget class="QLabel" name="label_24">
               <property name="text">
-               <string>通道 6</string>
+               <string>通道16</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_31">
+             <widget class="QLineEdit" name="lineEdit_ic4_ch4_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -827,7 +827,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_32">
+             <widget class="QLineEdit" name="lineEdit_ic4_ch4_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -846,12 +846,12 @@
             <item>
              <widget class="QLabel" name="label_25">
               <property name="text">
-               <string>通道 7</string>
+               <string>通道17</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_33">
+             <widget class="QLineEdit" name="lineEdit_ic5_ch1_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -864,7 +864,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_34">
+             <widget class="QLineEdit" name="lineEdit_ic5_ch1_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -883,12 +883,12 @@
             <item>
              <widget class="QLabel" name="label_26">
               <property name="text">
-               <string>通道 8</string>
+               <string>通道18</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_35">
+             <widget class="QLineEdit" name="lineEdit_ic5_ch2_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -901,7 +901,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_36">
+             <widget class="QLineEdit" name="lineEdit_ic5_ch2_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -920,12 +920,12 @@
             <item>
              <widget class="QLabel" name="label_27">
               <property name="text">
-               <string>通道 9</string>
+               <string>通道19</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_37">
+             <widget class="QLineEdit" name="lineEdit_ic5_ch3_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -938,7 +938,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_38">
+             <widget class="QLineEdit" name="lineEdit_ic5_ch3_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -957,12 +957,12 @@
             <item>
              <widget class="QLabel" name="label_28">
               <property name="text">
-               <string>通道10</string>
+               <string>通道20</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_39">
+             <widget class="QLineEdit" name="lineEdit_ic5_ch4_std">
               <property name="text">
                <string>0.0</string>
               </property>
@@ -975,7 +975,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_40">
+             <widget class="QLineEdit" name="lineEdit_ic5_ch4_tol">
               <property name="text">
                <string>0.00</string>
               </property>
@@ -1096,7 +1096,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_44">
+                 <widget class="QLineEdit" name="lineEdit_ic1_cur_std">
                   <property name="text">
                    <string>00</string>
                   </property>
@@ -1109,7 +1109,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_46">
+                 <widget class="QLineEdit" name="lineEdit_ic1_cur_tol">
                   <property name="text">
                    <string>00</string>
                   </property>
@@ -1133,7 +1133,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_42">
+                 <widget class="QLineEdit" name="lineEdit_ic2_cur_std">
                   <property name="text">
                    <string>00</string>
                   </property>
@@ -1146,7 +1146,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_48">
+                 <widget class="QLineEdit" name="lineEdit_ic2_cur_tol">
                   <property name="text">
                    <string>00</string>
                   </property>
@@ -1170,7 +1170,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_50">
+                 <widget class="QLineEdit" name="lineEdit_ic3_cur_std">
                   <property name="text">
                    <string>00</string>
                   </property>
@@ -1183,7 +1183,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_47">
+                 <widget class="QLineEdit" name="lineEdit_ic3_cur_tol">
                   <property name="text">
                    <string>00</string>
                   </property>

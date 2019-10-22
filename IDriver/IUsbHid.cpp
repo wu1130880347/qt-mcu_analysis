@@ -61,7 +61,7 @@ void IUsbHid::run()
         if(handle != nullptr)
         {
             ret = hid_read(handle, m_usb_rece_dat, sizeof(m_usb_rece_dat));
-            qDebug()<<"Enter hid_read successful rece: "<<ret<<endl;
+            //qDebug()<<"Enter hid_read successful rece: "<<ret<<endl;
             if(ret > 0)
             {
                 m_rece_usb_data.clear();
@@ -82,19 +82,26 @@ void IUsbHid::slot_rece_usb_data()
     char *temp_buf = m_rece_usb_data.data();
     uint32_t get_dat_ch[16] = {0};
     memcpy((uint8_t *)get_dat_ch,(uint8_t *)temp_buf,64);
-    g_Cmain_win->usb_usb_rece_process_show_va(get_dat_ch,16);
+    if(g_CCTest_tools != nullptr && g_CCTest_tools->m_show_status == 1)
+    {
+        g_CCTest_status->show_test_value(get_dat_ch,16);
+    }
+    else
+    {
+        g_Cmain_win->usb_usb_rece_process_show_va(get_dat_ch,16);
+    }
     //qDebug()<<get_dat_ch[0];
     //g_Cmain_win->usb_usb_rece_process(m_rece_usb_data);
 }
 void IUsbHid::handleTimeout()
 {
-    qDebug()<<"Enter timeout processing function\n";  
+    //qDebug()<<"Enter timeout processing function\n";  
     rece_sem.release();
     return ;
 }
 IUsbHid::IUsbHid()
 {
-    m_pTimer = new QTimer(this);  
+    m_pTimer = new QTimer(this);
     connect(m_pTimer, SIGNAL(timeout()), this, SLOT(handleTimeout()));
     connect(this, SIGNAL(sig_rece_usb_data()), this, SLOT(slot_rece_usb_data()));
 }
@@ -233,6 +240,27 @@ bool IUsbHid::usb_close_dev(void)
     hid_close(handle);
     handle = nullptr;
     return true;
+}
+bool IUsbHid::usb_get_test_dev()
+{
+    struct hid_device_info *devs, *cur_dev;
+    uint16_t usb_dev[20][2] = {0};
+    if (hid_init())
+        return false;
+    devs = hid_enumerate(0x0, 0x0);
+    cur_dev = devs;
+    while (cur_dev)
+    {
+        if (check_usb_dev(usb_dev, 0x0483, 0x5750))
+        {
+            hid_free_enumeration(devs); //释放内存
+            return true;
+        }
+        cur_dev = cur_dev->next;
+    }
+    hid_free_enumeration(devs); //释放内存
+    cur_dev = nullptr;
+    return false;
 }
 uint16_t IUsbHid::usb_init(void)
 {

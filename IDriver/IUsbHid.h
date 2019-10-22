@@ -22,6 +22,7 @@ public:
     bool usb_get_pc_dev(void);
     bool usb_open_dev(uint16_t vid,uint16_t pid);
     bool usb_close_dev(void);
+    bool usb_get_test_dev();
 signals:
     void sig_rece_usb_data();
 public slots:

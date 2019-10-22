@@ -25,11 +25,14 @@ void MainWindow::usb_log_process(QByteArray &dat)
 void MainWindow::usb_usb_rece_process_show_va(uint32_t *dat,uint8_t len)
 {
     char buf[512] = {0};
-    for(uint8_t i = 0;i<len;i++)
+    ui->textBrowser_usb_rece->clear();
+    for(uint8_t i = 0;i<len;i+=4)
     {
-        sprintf(buf,"ch = %d,value = %.2f\r\n",i,dat[i]*1.0/1000);
+        sprintf(buf,"%.2f %.2f %.2f %.2f",\
+                dat[i]*1.0/1000,dat[i+1]*1.0/1000,dat[i+2]*1.0/1000,dat[i+3]*1.0/1000);
         ui->textBrowser_usb_rece->append(buf);
     }
+    ui->textBrowser_usb_rece->append("");
 }
 void MainWindow::usb_usb_rece_process(QByteArray &dat)
 {

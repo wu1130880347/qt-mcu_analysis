@@ -2,6 +2,7 @@
 #define CWTESTTOOLS_H
 
 #include <QWidget>
+#include <QTimer> 
 
 namespace Ui {
 class CWTestTools;
@@ -13,6 +14,7 @@ class CWTestTools : public QWidget
 
 public:
     explicit CWTestTools(QWidget *parent = nullptr);
+    uint8_t m_show_status;//USB数据显示到面板上 1 显示 0不显示
     ~CWTestTools();
 
 private slots:
@@ -20,6 +22,7 @@ private slots:
 
 private:
     Ui::CWTestTools *ui;
+    QTimer *m_pTimer;  
 };
 
 #endif // CWTESTTOOLS_H
