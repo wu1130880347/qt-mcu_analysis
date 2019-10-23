@@ -66,6 +66,16 @@ void IUsbHid::run()
             {
                 m_rece_usb_data.clear();
                 m_rece_usb_data = QByteArray((char*)m_usb_rece_dat, ret);
+
+                char *temp_buf = m_rece_usb_data.data();
+                uint32_t get_dat_ch[16] = {0};
+                memcpy((uint8_t *)get_dat_ch, (uint8_t *)temp_buf, 64);
+                if (get_dat_ch[0] == 0xabceabce && get_dat_ch[1] != 4)
+                {  
+                    if(g_CCTest_tools != nullptr)
+                        g_CCTest_tools->get_ret_status((uint8_t *)temp_buf, 64);
+                }
+                
                 emit sig_rece_usb_data();//发出显示输出数据信号
             }
         }
@@ -87,6 +97,10 @@ void IUsbHid::slot_rece_usb_data()
         if(get_dat_ch[0] == 0xabcdabcd)
         {
             g_CCTest_tools->put_ret_status(true);
+        }
+        else if (get_dat_ch[0] == 0xabceabce)
+        {
+            g_CCTest_tools->get_ret_status((uint8_t *)temp_buf, 64);
         }
         else if(g_CCTest_tools->m_show_status == 1)
         {

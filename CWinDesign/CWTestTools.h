@@ -23,6 +23,7 @@ public:
     explicit CWTestTools(QWidget *parent = nullptr);
     void update_status(bool connect_fg);
     void put_ret_status(bool ret_status);
+    void get_ret_status(uint8_t * dat,uint8_t len);
     ~CWTestTools();
 
 private slots:

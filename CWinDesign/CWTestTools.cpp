@@ -35,7 +35,7 @@ CWTestTools::CWTestTools(QWidget *parent) :
     ui(new Ui::CWTestTools)
 {
     ui->setupUi(this);
-    //g_IUsbHid->usb_init_test_tool();//开启自动检测
+    g_IUsbHid->usb_init_test_tool();//开启自动检测
     mp_lineedit_std[0] = ui->lineEdit_ic1_ch1_std;
     mp_lineedit_std[1] = ui->lineEdit_ic1_ch2_std;
     mp_lineedit_std[2] = ui->lineEdit_ic1_ch3_std;
@@ -106,7 +106,71 @@ void CWTestTools::on_pushButton__test_show_status_clicked()
 
 void CWTestTools::on_pushButton_get_test_para_clicked()
 {
+    //usb读入下位机
+    uint8_t usb_write_buf[10] = {0};
+    uint8_t len = 10;
+    *(uint32_t*)usb_write_buf = 0xaabbccee;
+    *(uint32_t*)(usb_write_buf+4) = 1;//00-10
+     g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
+    Sleep(500);
+    *(uint32_t*)usb_write_buf = 0xaabbccee;
+    *(uint32_t*)(usb_write_buf+4) = 2;//00-10
+     g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
+    Sleep(500);
+    *(uint32_t*)usb_write_buf = 0xaabbccee;
+    *(uint32_t*)(usb_write_buf+4) = 3;//00-10
+     g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
+    Sleep(500);
+    *(uint32_t*)usb_write_buf = 0xaabbccee;
+    *(uint32_t*)(usb_write_buf+4) = 4;//00-10
+     g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
+    Sleep(500);
+}
+void CWTestTools::get_ret_status(uint8_t * dat,uint8_t len)
+{
+    static uint8_t get_fg = 0;
+    if(*(uint32_t*)(dat+4) == 1)
+    {
+        get_fg = 0;
+        memcpy((uint8_t *)m_ch_std,dat+8,40);
+    }
+    else if(*(uint32_t*)(dat+4) == 2)
+    {
+        get_fg++;
+        memcpy((uint8_t *)(m_ch_std+10),dat+8,40);
+    }
+    else if(*(uint32_t*)(dat+4) == 3)
+    {
+        get_fg++;
+        memcpy((uint8_t *)m_ch_tol,dat+8,40);
+    }
+    else if(*(uint32_t*)(dat+4) == 4)
+    {
+        if(get_fg == 2)
+        {
+            memcpy((uint8_t *)(m_ch_tol+10),dat+8,40);
+            get_fg = 0;
+            char temp_buf[20];
+            QPalette palette_blue;
+            QPalette palette_red;
+            palette_blue.setColor(QPalette::Text,Qt::blue);
+            palette_red.setColor(QPalette::Text,Qt::red);
+            for (int i = 0; i < 20; i++)
+            {
+                mp_lineedit_std[i]->clear();
+                sprintf(temp_buf, "%.2f", m_ch_std[i] * 1.0 / 1000);
+                mp_lineedit_std[i]->setText(temp_buf);
+                mp_lineedit_std[i]->setPalette(palette_blue);
 
+                mp_lineedit_tol[i]->clear();
+                sprintf(temp_buf, "%.2f", m_ch_tol[i] * 1.0 / 1000);
+                mp_lineedit_tol[i]->setText(temp_buf);
+                mp_lineedit_tol[i]->setPalette(palette_red);
+            }
+            QMessageBox::question(NULL, "question", "参数获取成功");
+        }
+    }
+    
 }
 void CWTestTools::put_ret_status(bool ret_status)
 {
