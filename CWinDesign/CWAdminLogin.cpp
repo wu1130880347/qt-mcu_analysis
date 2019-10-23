@@ -7,6 +7,8 @@ CWAdminLogin::CWAdminLogin(QWidget *parent) :
     ui(new Ui::CWAdminLogin)
 {
     ui->setupUi(this);
+    if(g_Cmain_win == nullptr)
+    g_Cmain_win = new MainWindow();
 }
 
 CWAdminLogin::~CWAdminLogin()
@@ -19,8 +21,6 @@ void CWAdminLogin::on_pushButton_admin_login_clicked()
     //close();
     g_ISerial->config();
     g_ISerial->open_serial();
-    if(g_Cmain_win == nullptr)
-    g_Cmain_win = new MainWindow();
     g_Cmain_win->show();
 }
 
