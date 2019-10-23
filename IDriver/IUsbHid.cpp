@@ -82,9 +82,20 @@ void IUsbHid::slot_rece_usb_data()
     char *temp_buf = m_rece_usb_data.data();
     uint32_t get_dat_ch[16] = {0};
     memcpy((uint8_t *)get_dat_ch,(uint8_t *)temp_buf,64);
-    if(g_CCTest_tools != nullptr && g_CCTest_tools->m_show_status == 1)
+    if(g_CCTest_tools != nullptr)
     {
-        g_CCTest_status->show_test_value(get_dat_ch,16);
+        if(get_dat_ch[0] == 0xabcdabcd)
+        {
+            g_CCTest_tools->put_ret_status(true);
+        }
+        else if(g_CCTest_tools->m_show_status == 1)
+        {
+            g_CCTest_status->show_test_value(get_dat_ch,16);
+        }
+        else
+        {
+            g_Cmain_win->usb_usb_rece_process_show_va(get_dat_ch,16);
+        }
     }
     else
     {

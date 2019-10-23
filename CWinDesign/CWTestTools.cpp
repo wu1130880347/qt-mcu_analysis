@@ -1,9 +1,10 @@
 #include "CWTestTools.h"
 #include "ui_CWTestTools.h"
 #include "CAppManagement.h"
-//#include <synchapi.h>
+#include <synchapi.h>
 #include <QDebug>
 #include <QByteArray>
+#include <QMessageBox>
 
 void CWTestTools::update_status(bool connect_fg)
 {
@@ -11,7 +12,7 @@ void CWTestTools::update_status(bool connect_fg)
     {
         m_test_connect = true;
         ui->label_show_tools_status->setText(QApplication::translate("CWTestTools", \
-        "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600; color:#ffAA00;\">设�?�已连接</span></p></body></html>", nullptr));
+        "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600; color:#ffAA00;\">设备已连接</span></p></body></html>", nullptr));
         if(g_CCTest_status != nullptr)
         {
             g_CCTest_status->show_tools_status(true);
@@ -21,10 +22,11 @@ void CWTestTools::update_status(bool connect_fg)
     {
         m_test_connect = false;
         ui->label_show_tools_status->setText(QApplication::translate("CWTestTools", \
-        "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600; color:#ff0000;\">设�?�不�?�?</span></p></body></html>", nullptr));
+        "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600; color:#ff0000;\">设备不可用</span></p></body></html>", nullptr));
         if(g_CCTest_status != nullptr)
         {
             g_CCTest_status->show_tools_status(false);
+            QMessageBox::question(NULL, "question", "please input data!!!");
         }
     }
 }
@@ -33,7 +35,7 @@ CWTestTools::CWTestTools(QWidget *parent) :
     ui(new Ui::CWTestTools)
 {
     ui->setupUi(this);
-    //g_IUsbHid->usb_init_test_tool();//开�?�?动�?�测�?��??
+    //g_IUsbHid->usb_init_test_tool();//开启自动检测
     mp_lineedit_std[0] = ui->lineEdit_ic1_ch1_std;
     mp_lineedit_std[1] = ui->lineEdit_ic1_ch2_std;
     mp_lineedit_std[2] = ui->lineEdit_ic1_ch3_std;
@@ -106,7 +108,19 @@ void CWTestTools::on_pushButton_get_test_para_clicked()
 {
 
 }
-
+void CWTestTools::put_ret_status(bool ret_status)
+{
+    if(ret_status == true)
+    {
+        m_send_dat_count++;
+    }
+    if(m_send_dat_count == m_send_suc_count)
+    {
+        m_send_suc_count = 0;
+        m_send_dat_count = 0;
+        QMessageBox::question(NULL, "question", "参数设置成功");
+    }
+}
 void CWTestTools::on_pushButton_set_test_para_clicked()
 {
     QString str;
@@ -120,31 +134,32 @@ void CWTestTools::on_pushButton_set_test_para_clicked()
         buf = str.toFloat();
         m_ch_tol[i] = (uint32_t)(buf*1000);
     }
-    //usb写入下位�?
-    uint8_t usb_write_buf[50];
+    //usb写入下位机
+    uint8_t usb_write_buf[50] = {0};
     uint8_t len = 50;
+    m_send_suc_count = 4;
+    m_send_dat_count = 0;
     *(uint32_t*)usb_write_buf = 0xaabbccdd;
     *(uint16_t*)(usb_write_buf+4) = 0;//00-10
     *(uint16_t*)(usb_write_buf+6) = 10;//00-10
-    memcpy(usb_write_buf+8,(uint8_t*)mp_lineedit_std,40);
+    memcpy(usb_write_buf+8,(uint8_t*)m_ch_std,40);
      g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
-    // Sleep(100);
-    // *(uint32_t*)(usb_write_buf+4) = 0x00100020;//00-10
-    // memcpy(usb_write_buf+8,(uint8_t*)(mp_lineedit_std+10),40);
-    // memcpy(send_dat.data(),usb_write_buf,sizeof(usb_write_buf));
-    // g_IUsbHid->usbhid_write(send_dat);
-    // Sleep(100);
+    Sleep(500);
+    *(uint16_t*)(usb_write_buf+4) = 10;//00-10
+    *(uint16_t*)(usb_write_buf+6) = 20;//00-10
+    memcpy(usb_write_buf+8,(uint8_t*)(m_ch_std+10),40);
+     g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
+    Sleep(500);
 
-    // *(uint32_t*)usb_write_buf = 0xaabbccdd;
-    // *(uint32_t*)(usb_write_buf+4) = 0x00200030;//00-10
-    // memcpy(usb_write_buf+8,(uint8_t*)mp_lineedit_tol,40);
-    // memcpy(send_dat.data(),usb_write_buf,sizeof(usb_write_buf));
-    // g_IUsbHid->usbhid_write(send_dat);
-    // Sleep(100);
-    // *(uint32_t*)(usb_write_buf+4) = 0x00300040;//00-10
-    // memcpy(usb_write_buf+8,(uint8_t*)(mp_lineedit_tol+10),40);
-    // memcpy(send_dat.data(),usb_write_buf,sizeof(usb_write_buf));
-    // g_IUsbHid->usbhid_write(send_dat);
-    // Sleep(100);
+    *(uint16_t*)(usb_write_buf+4) = 20;//00-10
+    *(uint16_t*)(usb_write_buf+6) = 30;//00-10
+    memcpy(usb_write_buf+8,(uint8_t*)m_ch_tol,40);
+     g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
+    Sleep(500);
 
+    *(uint16_t*)(usb_write_buf+4) = 30;//00-10
+    *(uint16_t*)(usb_write_buf+6) = 40;//00-10
+    memcpy(usb_write_buf+8,(uint8_t*)(m_ch_tol+10),40);
+     g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
+    Sleep(500);
 }
