@@ -20,6 +20,7 @@ public:
 private:
     Ui::CWTestToolsStatus *ui;
     QLineEdit *mp_lineedit[20];
+    QLabel *mp_label[20];
 };
 
 #endif // CWTESTTOOLSSTATUS_H
