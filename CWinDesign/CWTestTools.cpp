@@ -26,7 +26,7 @@ void CWTestTools::update_status(bool connect_fg)
         if(g_CCTest_status != nullptr)
         {
             g_CCTest_status->show_tools_status(false);
-            QMessageBox::question(NULL, "question", "please input data!!!");
+            //QMessageBox::question(NULL, "question", "please input data!!!");
         }
     }
 }
