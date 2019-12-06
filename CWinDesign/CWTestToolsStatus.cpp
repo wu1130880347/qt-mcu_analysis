@@ -67,6 +67,13 @@ void CWTestToolsStatus::show_test_value(uint32_t *dat, uint8_t len)
         led_status[i] = tp_buf[15+16*i];
         tp_buf[15+16*i] = 0;
     }
+
+    if(tp_buf[3] == 1)//气缸处于下压
+    {
+        tp_buf[3] = 0;
+        dat[0] += 100;
+    }
+
     QPalette palette_yellow;
     QPalette palette_blue;
     palette_yellow.setColor(QPalette::Text,Qt::magenta);

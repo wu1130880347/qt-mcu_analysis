@@ -227,3 +227,24 @@ void CWTestTools::on_pushButton_set_test_para_clicked()
      g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
     Sleep(500);
 }
+
+void CWTestTools::on_pushButton_pull_panel_status_clicked()
+{
+    //usb读入下位机
+    static uint8_t panel_status = 1;
+    uint8_t usb_write_buf[10] = {0};
+    uint8_t len = 10;
+    *(uint32_t*)usb_write_buf = 0xaabbccff;
+    *(uint32_t*)(usb_write_buf+4) = panel_status;//00-10
+     g_IUsbHid->usbhid_write_byte(usb_write_buf,len);
+    if(panel_status == 1)
+    {
+        panel_status = 0;
+        ui->pushButton_pull_panel_status->setText("上升气缸二");
+    }
+    else
+    {
+        panel_status = 1;
+        ui->pushButton_pull_panel_status->setText("下压气缸二");
+    }
+}

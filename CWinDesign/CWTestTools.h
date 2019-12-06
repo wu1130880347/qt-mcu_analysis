@@ -13,7 +13,7 @@ class CWTestTools : public QWidget
     Q_OBJECT
 
 public:
-    uint8_t m_show_status;//USB数据显示到面板上 1 显示 0不显�?
+    uint8_t m_show_status;//USB数据显示到面板上 1 显示 0不显��?
     bool m_test_connect;
     uint8_t m_send_dat_count;
     uint8_t m_send_suc_count;
@@ -32,6 +32,8 @@ private slots:
     void on_pushButton_get_test_para_clicked();
 
     void on_pushButton_set_test_para_clicked();
+
+    void on_pushButton_pull_panel_status_clicked();
 
 private:
     Ui::CWTestTools *ui;
